@@ -1,0 +1,4 @@
+data
+conf/local.php
+lib/tpl/*
+!lib/tpl/index.php
