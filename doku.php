@@ -23,6 +23,9 @@ if (isset($_SERVER['HTTP_X_DOKUWIKI_DO'])){
     $ACT = 'show';
 }
 
+//Disable over HTTP edits
+if(!in_array($ACT, array('show', 'sitemap', 'export'))) $ACT = 'show';
+
 // load and initialize the core system
 require_once(DOKU_INC.'inc/init.php');
 

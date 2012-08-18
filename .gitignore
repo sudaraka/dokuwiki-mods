@@ -1,4 +1,5 @@
 data
 conf/local.php
+.dropbox
 lib/tpl/*
 !lib/tpl/index.php

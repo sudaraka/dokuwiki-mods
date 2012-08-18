@@ -27,7 +27,10 @@ RewriteEngine on
 #RewriteRule ^lib/exe/xmlrpc.php$      https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 ##
 
-RewriteRule ^category/(.*)$				/$1 [R=302,L]
+RewriteRule ^(category|tag|about-the-web-site|about-sudaraka-wijesinghe)/(.+)$			/$2 [R=302,L]
+RewriteRule ^(projects|project-gallery)/(.*)$				/portfolio/$2 [R=302,L]
+RewriteRule ^testimonials/(.*)			/testimonials [R=302,L]
+RewriteRule ^(.+)/page/(\d*)			/$1 [R=302,L]
 RewriteRule ^n2s/?$						/note-to-self [R=302,L]
 RewriteRule ^n2s/(.*)$					/note-to-self/$1 [R=302,L]
 RewriteRule ^(.*/)?snippets/(.*)$		/code-snippets/$2 [R=302,L]
@@ -35,6 +38,7 @@ RewriteRule ^(.*/)?snippets/(.*)$		/code-snippets/$2 [R=302,L]
 RewriteRule ^_media/(.*)				lib/exe/fetch.php?media=$1  [QSA,L]
 RewriteRule ^_detail/(.*)				lib/exe/detail.php?media=$1  [QSA,L]
 RewriteRule ^_export/([^/]+)/(.*)		doku.php?do=export_$1&id=$2  [QSA,L]
+RewriteRule ^sitemap\.xml				doku.php?do=sitemap  [QSA,L]
 RewriteRule (.+)\/$						/$1 [R,QSA,L]
 RewriteRule ^$							doku.php  [L]
 RewriteCond %{REQUEST_FILENAME}			!-f
