@@ -1790,7 +1790,7 @@ function media_resize_image($file, $ext, $w, $h=0){
     if( $mtime > filemtime($file) ||
             media_resize_imageIM($ext,$file,$info[0],$info[1],$local,$w,$h) ||
             media_resize_imageGD($ext,$file,$info[0],$info[1],$local,$w,$h) ){
-        if($conf['fperm']) chmod($local, $conf['fperm']);
+        if($conf['fperm']) @chmod($local, $conf['fperm']);
         return $local;
     }
     //still here? resizing failed
