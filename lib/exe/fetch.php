@@ -100,9 +100,14 @@ function sendFile($file,$mime,$dl,$cache){
   header("Content-Type: $mime");
   // smart http caching headers
   if ($cache==-1) {
+      // Maximum cache time 1 year for images and 1 hour for others
+      $max_cache = 60*60;
+      if(0 < preg_match('/^image\//i', $mime))
+          $max_cache = 60*60*24*365;
+
     // cache
     // cachetime or one hour
-    header('Expires: '.gmdate("D, d M Y H:i:s", time()+max($conf['cachetime'], 3600)).' GMT');
+    header('Expires: '.gmdate("D, d M Y H:i:s", time()+max($conf['cachetime'], $max_cache)).' GMT');
     header('Cache-Control: public, proxy-revalidate, no-transform, max-age='.max($conf['cachetime'], 3600));
     header('Pragma: public');
   } else if ($cache>0) {
